@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 
-import Index from 'components/Index';
+import Home from 'components/Home';
 
 const App = ({ persistor, store }) => (
   <Provider store={store}>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import logo from 'styles/logo.svg';
 
-const Index = () => (
+const Home = () => (
   <div className="App">
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
@@ -14,4 +14,4 @@ const Index = () => (
   </div>
 );
 
-export default Index;
+export default Home;
