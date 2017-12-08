@@ -29,6 +29,8 @@ const _entity = (state = initialState, action) => {
         isFetching: false,
         errors: action.errors,
       };
+    default:
+      return state;
   }
 };
 

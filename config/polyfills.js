@@ -20,3 +20,13 @@ Object.assign = require('object-assign');
 if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global);
 }
+
+// Chrome mobile in iOS errors when autofill is off
+// - https://bugs.chromium.org/p/chromium/issues/detail?id=590375
+// - http://lealog.hateblo.jp/entry/2015/02/24/131643
+const dummy = () => {}
+window.__gCrWeb = window.__gCrWeb || {}
+window.__gCrWeb.autofill = window.__gCrWeb.autofill || {}
+window.__gCrWeb.autofill.extractForms = window.__gCrWeb.autofill.extractForms || dummy
+window.__gCrWeb.innerSizeAsString = window.__gCrWeb.innerSizeAsString || dummy
+window.__gCrWeb.getElementFromPoint = window.__gCrWeb.getElementFromPoint || dummy

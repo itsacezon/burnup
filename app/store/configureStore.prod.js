@@ -1,21 +1,22 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { autoRehydrate } from 'redux-persist';
+import { persistCombineReducers, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
-import rootReducer from 'reducers';
-import { configurePersistence } from 'store/configurePersistence';
+import reducers from 'reducers';
+import { persistOptions } from 'store/configurePersistence';
 
-const configureStore = (preloadedState = {}) => {
+export const configureStore = (preloadedState = {}) => {
+  const reducer = persistCombineReducers(persistOptions, reducers);
+
   const store = createStore(
-    rootReducer,
+    reducer,
     preloadedState,
     compose(
-      applyMiddlerware(thunk),
-      autoRehydrate(),
+      applyMiddleware(thunk),
     )
   );
 
-  configurePersistence(store);
+  const persistor = persistStore(store);
 
-  return store;
+  return { persistor, store };
 }
