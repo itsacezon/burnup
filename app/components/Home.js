@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import logo from 'styles/logo.svg';
 
@@ -22,5 +23,12 @@ const Home = ({
     <button onClick={getEntity}>Fetch entity</button>
   </div>
 );
+
+Home.propTypes = {
+  data: PropTypes.array,
+  getEntity: PropTypes.func.isRequired,
+  isFetching: PropTypes.bool,
+  sample: PropTypes.string,
+}
 
 export default Home;
