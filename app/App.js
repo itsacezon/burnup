@@ -8,7 +8,8 @@ import { ConnectedRouter } from 'react-router-redux';
 import { Route } from 'react-router';
 
 import { history } from 'store/configureStore';
-import Home from 'components/Home';
+
+import Home from 'containers/Home';
 
 const App = ({ persistor, store }) => (
   <Provider store={store}>

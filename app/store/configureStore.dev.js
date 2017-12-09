@@ -1,5 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { persistCombineReducers, persistStore } from 'redux-persist';
+import { persistCombineReducers, persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
 import createHistory from 'history/createBrowserHistory';
@@ -27,8 +27,9 @@ export const configureStore = (preloadedState = {}) => {
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    module.hot.accept('../reducers', () => {
-      store.replaceReducer(reducer);
+    module.hot.accept('reducers', () => {
+      const nextReducer = require('reducers').default // eslint-disable-line
+      store.replaceReducer(persistReducer(persistOptions, nextReducer));
     })
   }
 
